@@ -1,7 +1,7 @@
 /* MAKE CHANGES: start*/
 /* default values */
 var config = {
-    CAMproject: "projectName", // "proj_" + uuid.v4(), // necessary for server (see ERM)
+    CAMproject: "Urlaubsplan", // "proj_" + uuid.v4(), // necessary for server (see ERM)
     ConNumNodes: 1, // number of nodes necessary to draw
     
     hideArrows: true, // if false = possible to draw arrows
@@ -10,8 +10,8 @@ var config = {
     hideAmbivalent: false, // if false = possible to draw ambivalent node
     showOnlyPosSlid: false, // if true = show only slider for agreement (+1 - +3)
     
-    MaxLengthWords: 3, // maximum number of words for each concept
-    MaxLengthChars: 40, // maximum number of characters for each concept
+    MaxLengthWords: 10, // maximum number of words for each concept
+    MaxLengthChars: 100, // maximum number of characters for each concept
     LengthSentence: 20, // include breaklines if >= X characters
     LengthWords: 8, // include breaklines after each word with cumsum >= X characters
 
@@ -24,8 +24,15 @@ var config = {
     fullScreen: false, // if true = study in fullscreen mode + paradata
     showNotPopupStart: true, // true = no pop up shown; only working if fullScreen is set to true
 
-    AdaptiveStudy: true, // run as adaptive study 
-    ADAPTIVESTUDYurl: "http://example.org/", // URL the CAM data should be append to
+const config = {
+    AdaptiveStudy: true,
+    ADAPTIVESTUDYurl: "https://www.soscisurvey.de/deineStudie/?participantID=",
+    onEnd: function() {
+        const participantID = Math.random().toString(36).substr(2, 9); // Generiere eine zufällige ID
+        window.location.href = config.ADAPTIVESTUDYurl + participantID; // Weiterleitung zur SoSci Survey-Seite
+    }
+};
+ // URL the CAM data should be append to
 
     setReminder: false, // if true = after X ms 2 reminder pop up
 
